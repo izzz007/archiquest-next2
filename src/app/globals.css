@@ -2,16 +2,125 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
+/* CSS for Travel Bug game */
+.main-container {
+  position: relative; /* Ensure the container is positioned relatively */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('https://img.freepik.com/premium-photo/world-landmarks-famous-monuments-collage-isolated-white-background_880100-2478.jpg?w=1380');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Bus image */
+.bus-image {
+  position: absolute;
+  bottom: 0;
+  left: 50%; /* Position it in the center horizontally */
+  transform: translateX(-50%); /* Move it back by half of its width to center it perfectly */
+  z-index: 1; /* Ensure the bus image is in front of the background image */
+  width: 800px; /* Increase the width to make the bus image larger */
+  height: auto; /* Increase the height to make the bus image larger */
+  animation: driveOff 20s linear forwards; /* Add the animation */
+  transition: transform 0.5s ease-in-out; /* Add a transition effect */
+  display: block; /* Ensure the element is displayed correctly */
+  visibility: visible; /* Ensure the element is visible */
+  pointer-events: none; /* Ensure the element is not affected by mouse events */
+  z-index: 1; /* Ensure the element is displayed correctly */
 }
 
-body {
-  background: rgb(240, 240, 240, 1);
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes driveOff {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.intro-text {
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8); /* Add a background to make text more readable */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.start-tour-button {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-tour-button:hover {
+  background-color: #0056b3;
+}
+
+/* Flashing title effect */
+.flash-title {
+  animation: flash 2s infinite;
+  background-color: rgba(255, 255, 255, 0.8); /* Add a background to make text more readable */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* CSS for making location names bigger */
+.location-input {
+  font-size: 3rem; /* Increase the size to twice the original */
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-top: 40px;
+}
+
+.selected-image-container {
+  border: 2px solid #ff0000; /* Red border with 2px width */
+  box-sizing: border-box; /* Ensure the border is included in the container dimensions */
+}
+
+.flash-title {
+  animation: flash 1s infinite alternate;
+  font-family: Jokerman, sans-serif; /* Apply the Elephant font */
+}
+
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.volume-control-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(250, 255, 210, 0.7); /* White with 50% opacity */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.volume-control-button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
 }

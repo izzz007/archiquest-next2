@@ -5,8 +5,9 @@ import {
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SelectionArea } from "./SelectImageRegion";
+
 export default function Panorama({
   img,
   onSelect,
@@ -28,6 +29,7 @@ export default function Panorama({
     null
   );
   const [controlsDisabled, setControlsDisabled] = useState(false);
+  const canvasRef = useRef<HTMLDivElement>(null);
 
   const handleWheel = (deltaY: number) => {
     setFov((prevFov) => {
@@ -37,13 +39,13 @@ export default function Panorama({
     });
   };
 
-  const handleMouseDown = (e: any) => {
+  const handleMouseDown = (e: React.MouseEvent) => {
     setIsSelecting(true);
     const { offsetX, offsetY } = e.nativeEvent;
     setSelection({ x: offsetX, y: offsetY, width: 0, height: 0 });
   };
 
-  const handleMouseMove = (e: any) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     if (isSelecting) {
       const { offsetX, offsetY } = e.nativeEvent;
       setSelection((prevSelection) => ({
@@ -61,31 +63,49 @@ export default function Panorama({
 
   return (
     <>
-      <Canvas
-        onWheel={(e) => handleWheel(e.deltaY)}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onKeyDown={(e) => setControlsDisabled(e.key == "Shift")}
-        onKeyUp={(e) => setControlsDisabled(false)}
-        tabIndex={0}
-        gl={{ preserveDrawingBuffer: true }}
+      <div
+        ref={canvasRef}
+        style={{ position: "relative", width: "100%", height: "100%" }}
       >
-        <Environment files={img} background />
-        <OrbitControls
-          enabled={!controlsDisabled}
-          target={[1, 0, 0]}
-          maxPolarAngle={immersive ? Math.PI : Math.PI - Math.PI / 3}
-          minPolarAngle={immersive ? 0 : Math.PI / 3}
-          minAzimuthAngle={immersive ? -Infinity : -Math.PI}
-          maxAzimuthAngle={immersive ? Infinity : 0}
-          minZoom={immersive ? 0 : 0.5}
-          autoRotate={immersive ? false : true}
-          autoRotateSpeed={0.2}
-        />
-        <PerspectiveCamera makeDefault position={[0, 0, 0]} fov={fov} />
-        <SelectionHandler selectionArea={finalSelection} onSelect={onSelect} />
-      </Canvas>
+        <Canvas
+          onWheel={(e) => handleWheel(e.deltaY)}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onKeyDown={(e) => setControlsDisabled(e.key === "Shift")}
+          onKeyUp={() => setControlsDisabled(false)}
+          tabIndex={0}
+          gl={{ preserveDrawingBuffer: true }}
+        >
+          <Environment files={img} background />
+          <OrbitControls
+            enabled={!controlsDisabled}
+            target={[1, 0, 0]}
+            maxPolarAngle={immersive ? Math.PI : Math.PI - Math.PI / 3}
+            minPolarAngle={immersive ? 0 : Math.PI / 3}
+            minAzimuthAngle={immersive ? -Infinity : -Math.PI}
+            maxAzimuthAngle={immersive ? Infinity : 0}
+            minZoom={immersive ? 0 : 0.5}
+            autoRotate={false}
+            autoRotateSpeed={0.2}
+          />
+          <PerspectiveCamera makeDefault position={[0, 0, 0]} fov={fov} />
+          <SelectionHandler selectionArea={finalSelection} onSelect={onSelect} />
+        </Canvas>
+        {isSelecting && (
+          <div
+            style={{
+              position: "absolute",
+              top: selection.y,
+              left: selection.x,
+              width: Math.abs(selection.width),
+              height: Math.abs(selection.height),
+              border: "2px solid red",
+              pointerEvents: "none",
+            }}
+          ></div>
+        )}
+      </div>
     </>
   );
 }
@@ -126,7 +146,7 @@ const SelectionHandler = ({
     );
     //call the callback function and provide the image
     onSelect(offScreenCanvas.toDataURL("image/png"));
-  }, [selectionArea]);
+  }, [selectionArea, gl, onSelect]);
 
   return null;
 };
