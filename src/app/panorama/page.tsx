@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getGroqCompletion } from "@/ai/groq";
 import { generateImageFal } from "@/ai/fal";
 import { getGeminiVision } from "@/ai/gemini";
@@ -16,7 +16,7 @@ export default function Page() {
   const [locations, setLocations] = useState<string[]>([]);
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [tourData, setTourData] = useState<{ description: string; img: string }[]>([]);
+  const [tourData, setTourData] = useState<{ description: string, img: string }[]>([]);
   const [tourStarted, setTourStarted] = useState(false);
   const [volumeOn, setVolumeOn] = useState(true);
   const [narrationPlaying, setNarrationPlaying] = useState(false);
@@ -123,8 +123,7 @@ export default function Page() {
   };
 
   const handleEndTour = () => {
-    setTourStarted(false);
-    setNarrationPlaying(false);
+    setNarrationPlaying(false); // Stop narration when tour ends
   };
 
   const handleNarration = (narration: string) => {
