@@ -34,3 +34,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+src/app/gameshow/page.tsx
+src/app/gameshow/page.tsx
+src/app/gameshow/join/page.tsx
+src/app/gameshow/host/page.tsx
+src/app/exploration/supabaseMaps.ts
+src/app/exploration/page.tsx
+src/app/artcritic/supabaseArt.ts
+src/app/artcritic/supabaseArt.ts
+src/app/exploration/page.tsx
+src/app/exploration/supabaseMaps.ts
+src/app/gameshow/host/page.tsx
+src/app/gameshow/join/page.tsx
+src/app/gameshow/page.tsx
+src/app/exploration/page.tsx
+src/app/artcritic/supabaseArt.ts
+src/app/exploration/page.tsx

@@ -142,7 +142,7 @@ export default function Page() {
       {!tourStarted && (
         <>
           <h1 className="text-8xl font-bold mb-4 flash-title">Travel Bug</h1>
-          <p className="intro-text">Welcome to the whirlwind adventure of Contiki Tourism, where the only thing faster than your bus is your guide's spiel about local history! Get ready to take snapshots of more monuments than you can remember! Take a snapshot of the interesting scenery in your destination to find out more about what you see.</p>
+          <p className="intro-text">Welcome to the whirlwind adventure of Contiki Tourism, where the only thing faster than your bus is your guides spiel about local history! Get ready to take snapshots of more monuments than you can remember! Take a snapshot of the interesting scenery in your destination to find out more about what you see.</p>
           <button className="start-tour-button" onClick={handleCreate} disabled={fetching}>
             {fetching ? "Loading..." : "Start Tour"}
           </button>
