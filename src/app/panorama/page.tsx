@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getGroqCompletion } from "@/ai/groq";
 import { generateImageFal } from "@/ai/fal";
 import { getGeminiVision } from "@/ai/gemini";
@@ -16,7 +16,7 @@ export default function Page() {
   const [locations, setLocations] = useState<string[]>([]);
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [tourData, setTourData] = useState<{ description: string, img: string }[]>([]);
+  const [tourData, setTourData] = useState<{ description: string; img: string }[]>([]);
   const [tourStarted, setTourStarted] = useState(false);
   const [volumeOn, setVolumeOn] = useState(true);
   const [narrationPlaying, setNarrationPlaying] = useState(false);
@@ -123,7 +123,8 @@ export default function Page() {
   };
 
   const handleEndTour = () => {
-    setNarrationPlaying(false); // Stop narration when tour ends
+    setTourStarted(false);
+    setNarrationPlaying(false);
   };
 
   const handleNarration = (narration: string) => {
@@ -142,7 +143,7 @@ export default function Page() {
       {!tourStarted && (
         <>
           <h1 className="text-8xl font-bold mb-4 flash-title">Travel Bug</h1>
-          <p className="intro-text">Welcome to the whirlwind adventure of Contiki Tourism, where the only thing faster than your bus is your guides spiel about local history! Get ready to take snapshots of more monuments than you can remember! Take a snapshot of the interesting scenery in your destination to find out more about what you see.</p>
+          <p className="intro-text">Welcome to the whirlwind adventure of Contiki Tourism, where the only thing faster than your bus is your guide's spiel about local history! Get ready to take snapshots of more monuments than you can remember! Take a snapshot of the interesting scenery in your destination to find out more about what you see.</p>
           <button className="start-tour-button" onClick={handleCreate} disabled={fetching}>
             {fetching ? "Loading..." : "Start Tour"}
           </button>
