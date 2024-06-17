@@ -1,26 +1,24 @@
-export default function KeyValueTable({ data }: { data: any }) {
+import React from 'react';
+
+interface PopupProps {
+  message: string;
+  onClose: () => void;
+}
+
+const Popup: React.FC<PopupProps> = ({ message, onClose }) => {
   return (
-    <div className="flex flex-col">
-      {data && Object.keys(data).length > 0 && (
-        <>
-          {Object.keys(data).map((key) => (
-            <div key={key} className="flex gap-4">
-              <div className="font-semibold">{key}:</div>
-              <div className="flex flex-col">
-                {typeof data[key] === "object" &&
-                !Array.isArray(data[key]) &&
-                data[key] !== null ? (
-                  <KeyValueTable data={data[key]} />
-                ) : Array.isArray(data[key]) ? (
-                  data[key].join(",")
-                ) : (
-                  data[key]
-                )}
-              </div>
-            </div>
-          ))}
-        </>
-      )}
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <p>{message}</p>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+          onClick={onClose}
+        >
+          Close
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default Popup;
