@@ -6,6 +6,7 @@ import { getGeminiVision } from "@/ai/gemini";
 import Panorama from "@/components/Panorama";
 import Spinner from "@/components/Spinner";
 import Narration from "@/components/Narration";
+import Image from "next/image";
 
 export default function Page() {
   const [fetching, setFetching] = useState(false);
@@ -20,9 +21,9 @@ export default function Page() {
   const [volumeOn, setVolumeOn] = useState(true);
   const [narrationPlaying, setNarrationPlaying] = useState(false);
   const [locationsVisited, setLocationsVisited] = useState(0);
-  const [problemDisplayed, setProblemDisplayed] = useState(false); // Add this line
-  const [tourEnded, setTourEnded] = useState(false); // Add this line
-  const [rating, setRating] = useState(0); // Add this line
+  const [problemDisplayed, setProblemDisplayed] = useState(false);
+  const [tourEnded, setTourEnded] = useState(false);
+  const [rating, setRating] = useState(0);
   const [ratingsSum, setRatingsSum] = useState(0);
   const [overallRating, setOverallRating] = useState(0);
   // Audio state and ref

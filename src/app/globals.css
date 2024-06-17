@@ -19,17 +19,16 @@
 .bus-image {
   position: absolute;
   bottom: 0;
-  left: 50%; /* Position it in the center horizontally */
-  transform: translateX(-50%); /* Move it back by half of its width to center it perfectly */
-  z-index: 1; /* Ensure the bus image is in front of the background image */
-  width: 800px; /* Increase the width to make the bus image larger */
-  height: auto; /* Increase the height to make the bus image larger */
-  animation: driveOff 20s linear forwards; /* Add the animation */
-  transition: transform 0.5s ease-in-out; /* Add a transition effect */
-  display: block; /* Ensure the element is displayed correctly */
-  visibility: visible; /* Ensure the element is visible */
-  pointer-events: none; /* Ensure the element is not affected by mouse events */
-  z-index: 1; /* Ensure the element is displayed correctly */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999; /* Increase the z-index value */
+  width: 800px; /* Increase the width */
+  height: auto; /* Maintain aspect ratio */
+  animation: driveOff 20s linear forwards;
+  transition: transform 0.5s ease-in-out;
+  display: block;
+  visibility: visible;
+  pointer-events: none;
 }
 
 @keyframes driveOff {
