@@ -124,3 +124,55 @@
   cursor: pointer;
   font-size: 16px;
 }
+.image-container {
+  background-image: url('/AdobeStock_200826397-removebg-preview.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 700px;
+  height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  max-width: 22%;
+  max-height: 75%;
+  object-fit: none;
+  z-index: 1;
+  transform: translateX(-44%); /* Adjust this value to position the image horizontally */
+}
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+.rating {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem; /* Add padding */
+  border-radius: 0.5rem; /* Add border radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow for depth */
+}
+.end-tour-container {
+  background-image: url('/AdobeStock_200826397-removebg-preview.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Set the height to 100vh to cover the full viewport height */
+  width: 80vh; 
+
+}
