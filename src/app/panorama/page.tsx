@@ -84,7 +84,7 @@ export default function Page() {
       if (pano) setImg(pano);
 
       const description = await getGeminiVision(
-        `Imagine you're a witty and knowledgeable tourist guide. Provide a detailed and engaging commentary about this tourist destination, highlighting its history, significance, and interesting trivia.`,
+        `Imagine you are a witty and knowledgeable tourist guide. Provide a detailed and engaging commentary about this tourist destination, highlighting its history, significance, and interesting trivia.`,
         pano
       );
       setDescription(description);
@@ -136,7 +136,7 @@ export default function Page() {
       } else {
         setProblemDisplayed(false);
         const description = await getGeminiVision(
-          `Imagine you're a really funny tourist guide. Provide a engaging commentary about this tourist destination, highlighting its, significance, and interesting trivia.`,
+          `Imagine you are a really funny tourist guide. Provide a engaging commentary about this tourist destination, highlighting its, significance, and interesting trivia.`,
           imgUrl
         );
         setDescription(description);
@@ -224,7 +224,7 @@ export default function Page() {
                 <Panorama img={img} onSelect={handleSelect} immersive={false} />
                 <div className="absolute top-0 left-0 p-4 flex flex-col max-w-sm">
                 <p className="text-sm mt-2 text-red-600 bg-white p-2 ">
-  Instructions for creating your snapshot: Click 'Shift', and drag by holding down the Left mouse/track pad button to capture the image.
+  Instructions for creating your snapshot: Click Shift, and drag by holding down the Left mouse/track pad button to capture the image.
 </p>
                   <p className="text-xs bg-white p-2">{description}</p>
                   <div className="relative">
